@@ -1,7 +1,7 @@
 import createdebug from "debug";
 import { type CustomError } from "../../../CustomError/CustomError.js";
 import { type NextFunction, type Request, type Response } from "express";
-import chalk from "chalk/index.js";
+import chalk from "chalk";
 
 const debug = createdebug("quefem-api:server:middlewares:errorMiddlewares");
 
