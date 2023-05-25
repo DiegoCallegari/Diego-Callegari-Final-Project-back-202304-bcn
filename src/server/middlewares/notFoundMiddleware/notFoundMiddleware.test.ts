@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
-import notFoundError from "./noFoundMiddleware.js";
-import { CustomError } from "../../../CustomError/CustomError";
+import notFoundError from "./notFoundMiddleware.js";
+import { CustomError } from "../../../CustomError/CustomError.js";
 
 describe("Given a notFoundErrorMiddleware middleware", () => {
   describe("When it is called", () => {
