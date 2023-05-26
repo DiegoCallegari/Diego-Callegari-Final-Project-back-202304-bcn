@@ -35,6 +35,11 @@ const mockInvalidUser: UserAccess = {
   password: "didi1011",
 };
 
+const mockInvalidFormatUser = {
+  username: "didi",
+  password: 12345,
+};
+
 const mockUserHashed: UserAccess = {
   username: "didi",
   password: "$2y$10$rxjBX/5k2ZZMiHXNMPkM1OIb9tWksHFXpXSi3H4Yw1MQayR0TojJm",
@@ -73,6 +78,21 @@ describe("Given a endpoint with a method POST and a path '/user/login' ", () => 
       const res: { body: { message: string } } = await request(app)
         .post(`${paths.user}${paths.login}`)
         .send(mockInvalidUser)
+        .expect(expectedStatus);
+
+      expect(res.body.message).toBe(extectedMessage);
+    });
+  });
+
+  describe("When it receives an invalid format of credentials with a username 'didi' and a password '12345'", () => {
+    test("Then it should respond with a status code 400 and a 'Validation failed' message", async () => {
+      const expectedStatus = 400;
+
+      const extectedMessage = "Validation Failed";
+
+      const res: { body: { message: string } } = await request(app)
+        .post(`${paths.user}${paths.login}`)
+        .send(mockInvalidFormatUser)
         .expect(expectedStatus);
 
       expect(res.body.message).toBe(extectedMessage);
