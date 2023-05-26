@@ -22,7 +22,7 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
-app.get(paths.pingController, pingController);
+app.get(paths.ping, pingController);
 
 app.use(notFoundError);
 
