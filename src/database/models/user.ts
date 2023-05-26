@@ -14,7 +14,6 @@ const userSchema = new Schema({
 
   name: {
     type: String,
-    required: true,
   },
 
   surname: {
@@ -25,7 +24,6 @@ const userSchema = new Schema({
 
   email: {
     type: String,
-    required: true,
   },
 });
 
