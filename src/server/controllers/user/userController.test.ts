@@ -1,11 +1,12 @@
 import { Types } from "mongoose";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { type Response } from "express";
+import { type NextFunction, type Response } from "express";
 import loginUser from "./userController.js";
 import { type UserStructure, type UserAccessRequest } from "../../types";
 import User from "../../../database/models/user.js";
 import { type UserAccess } from "../../types";
+import { CustomError } from "../../../CustomError/CustomError.js";
 
 describe("Given a login userController", () => {
   const mockToken = "returntoken";
@@ -53,6 +54,26 @@ describe("Given a login userController", () => {
       await loginUser(req as UserAccessRequest, res as Response, next);
 
       expect(res.json).toHaveBeenCalledWith({ token: mockToken });
+    });
+
+    describe("When it receives a request with wrong credentials", () => {
+      test("then it should call the received next function with a 401 status code and a 'Wrong credentials' message", async () => {
+        const error = new CustomError(401, "Wrong credentials access");
+
+        User.findOne = jest.fn().mockReturnValue({
+          exec: jest.fn().mockResolvedValue(undefined),
+        });
+
+        bcrypt.compare = jest.fn().mockResolvedValue(false);
+
+        await loginUser(
+          req as UserAccessRequest,
+          res as Response,
+          next as NextFunction
+        );
+
+        expect(next).toHaveBeenCalledWith(error);
+      });
     });
   });
 });
