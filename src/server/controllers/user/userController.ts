@@ -1,5 +1,5 @@
 import jwt, { type JwtPayload } from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { type NextFunction, type Response } from "express";
 import { type UserAccessRequest } from "../../types";
 import User from "../../../database/models/user.js";
@@ -13,7 +13,7 @@ const loginUser = async (
   const { username, password } = req.body;
 
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).exec();
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       const customError = new CustomError(401, "Wrong credentials access");
