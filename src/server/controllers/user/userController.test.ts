@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { type NextFunction, type Response } from "express";
 import loginUser from "./userController.js";
 import { type UserStructure, type UserAccessRequest } from "../../types";
-import User from "../../../database/models/user.js";
+import User from "../../../database/models/User.js";
 import { type UserAccess } from "../../types";
 import { CustomError } from "../../../CustomError/CustomError.js";
 
