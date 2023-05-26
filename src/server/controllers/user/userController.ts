@@ -17,7 +17,6 @@ const loginUser = async (
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       const customError = new CustomError(401, "Wrong credentials access");
-
       throw customError;
     }
 

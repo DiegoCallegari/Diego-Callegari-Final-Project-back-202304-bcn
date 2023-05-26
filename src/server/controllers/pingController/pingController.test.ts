@@ -1,5 +1,5 @@
 import { type Request, type Response } from "express";
-import pingController from "./pingController.js";
+import ping from "./pingController.js";
 
 type CustomResponse = Pick<Response, "status" | "json">;
 
@@ -14,7 +14,7 @@ describe("Given a pingController", () => {
         json: jest.fn(),
       };
 
-      pingController(req as Request, res as Response);
+      ping(req as Request, res as Response);
 
       expect(res.status).toHaveBeenLastCalledWith(expectedStatusCode);
       expect(res.json).toHaveBeenCalledWith({ message: expectedMessage });
