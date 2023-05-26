@@ -30,6 +30,11 @@ const mockUser: UserAccess = {
   password: "didi1010",
 };
 
+const mockInvalidUser: UserAccess = {
+  username: "didi",
+  password: "didi1011",
+};
+
 const mockUserHashed: UserAccess = {
   username: "didi",
   password: "$2y$10$rxjBX/5k2ZZMiHXNMPkM1OIb9tWksHFXpXSi3H4Yw1MQayR0TojJm",
@@ -56,6 +61,21 @@ describe("Given a endpoint with a method POST and a path '/user/login' ", () => 
       const userId = payload.sub as string;
 
       expect(userId).toBe(newUser._id.toString());
+    });
+  });
+
+  describe("When it receives a request with a invalid password", () => {
+    test("Then it should respond with a status code 401 and a 'Wrong credentials access' message", async () => {
+      const expectedStatus = 401;
+
+      const extectedMessage = "Wrong credentials access";
+
+      const res: { body: { message: string } } = await request(app)
+        .post(`${paths.user}${paths.login}`)
+        .send(mockInvalidUser)
+        .expect(expectedStatus);
+
+      expect(res.body.message).toBe(extectedMessage);
     });
   });
 });
