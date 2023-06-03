@@ -19,3 +19,18 @@ export type UserStructure = {
 export interface UserDbStructure extends UserAccess {
   _id: Types.ObjectId;
 }
+
+export interface EventStructure {
+  _id: Types.ObjectId;
+  title: string;
+  image: string;
+  neighbourhood: string;
+  description: string;
+  date: Date;
+  category: string;
+  user: Types.ObjectId;
+}
+
+export interface CustomRequest extends Request {
+  userId: string;
+}

@@ -23,8 +23,6 @@ const eventSchema = new Schema({
 
   date: Date,
 
-  price: String,
-
   category: String,
 
   user: {

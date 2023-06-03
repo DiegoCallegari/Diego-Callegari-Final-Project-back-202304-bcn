@@ -1,11 +1,12 @@
+import "../loadEnvironment.js";
 import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import notFoundError from "./middlewares/notFoundMiddleware/notFoundMiddleware.js";
-import generalError from "./middlewares/generalErrorMiddleware/generalErrorMiddlewares.js";
-import ping from "./controllers/pingController/pingController.js";
+import generalError from "./middlewares/generalErrorMiddleware/generalErrorMiddleware.js";
 import paths from "./utils/paths.js";
 import userRouter from "./routes/user/userRouter.js";
+import ping from "./controllers/ping/pingController.js";
 
 const allowedOrigins = process.env.ALLOWED_ORIGINS;
 
