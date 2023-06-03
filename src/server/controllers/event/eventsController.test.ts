@@ -1,4 +1,4 @@
-import { type NextFunction, type Response } from "express";
+import { type Request, type NextFunction, type Response } from "express";
 import getEvents from "./eventsController.js";
 import { eventsMock } from "../../../mocks/eventsMocks.js";
 import { type CustomRequest } from "../../types.js";
@@ -28,6 +28,21 @@ describe("Given an events controller", () => {
       );
 
       expect(res.status).toHaveBeenCalledWith(expectedStatus);
+    });
+  });
+
+  describe("When it receives a next function and the exec method rejects with a 'Database error connection'", () => {
+    test("Then it should call next function with the error 'Database error connection'", async () => {
+      const expectedError = new Error("Database error connection");
+
+      Event.find = jest.fn().mockReturnValue({
+        limit: jest.fn().mockReturnThis(),
+        exec: jest.fn().mockRejectedValue(expectedError),
+      });
+
+      await getEvents(req as Request, res as Response, next as NextFunction);
+
+      expect(next).toHaveBeenCalledWith(expectedError);
     });
   });
 });

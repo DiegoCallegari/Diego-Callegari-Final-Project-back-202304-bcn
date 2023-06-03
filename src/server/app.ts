@@ -8,7 +8,10 @@ import paths from "./utils/paths.js";
 import userRouter from "./routes/user/userRouter.js";
 import ping from "./controllers/ping/pingController.js";
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS;
+const allowedOrigins = [
+  process.env.ALLOWED_ORIGINS_DEV!,
+  process.env.ALLOWED_ORIGINS_PROD!,
+];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
