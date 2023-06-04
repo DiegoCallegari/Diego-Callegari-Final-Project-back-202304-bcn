@@ -1,0 +1,61 @@
+{
+  "info": {
+    "_postman_id": "a6f8d52d-29d5-474c-b67d-3639d8e3db4a",
+    "name": "Events-QueFem",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27034136"
+  },
+  "item": [
+    {
+      "name": "http://localhost:4000/user/login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\": \"admin\",\n    \"password\": \"admin\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:4000/user/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["user", "login"]
+        },
+        "description": "Endpoint POST user, with good credentials and getting token."
+      },
+      "response": []
+    },
+    {
+      "name": "http://localhost:4000/events",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwODRiMjJhYTE1NTc4MjFhYmIwY2UiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU4OTU3ODgsImV4cCI6MTY4NTk4MjE4OH0.aGdLF2H_jl5vS7IG0jqga64R4SA59vJKhKqorFMhf68",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:4000/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "4000",
+          "path": ["events"]
+        },
+        "description": "Endpoint GET, with good credentials and giving acces to list of database."
+      },
+      "response": []
+    }
+  ]
+}

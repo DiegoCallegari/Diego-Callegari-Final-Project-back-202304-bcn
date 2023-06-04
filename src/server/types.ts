@@ -34,3 +34,7 @@ export interface EventStructure {
 export interface CustomRequest extends Request {
   userId: string;
 }
+
+export interface TokenStructure {
+  token: string;
+}

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { type NextFunction, type Request } from "express";
+import { type Response, type NextFunction, type Request } from "express";
 import { type CustomRequest } from "../../types";
 import { auth } from "./authMiddleware.js";
 import { CustomError } from "../../../CustomError/CustomError.js";

@@ -12,7 +12,7 @@ const eventSchema = new Schema({
     required: String,
   },
 
-  barrio: {
+  neighbourhood: {
     type: String,
     required: String,
   },
