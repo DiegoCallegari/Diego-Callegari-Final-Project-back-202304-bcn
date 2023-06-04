@@ -4,7 +4,7 @@ import { CustomError } from "../../../CustomError/CustomError.js";
 
 describe("Given a notFoundErrorMiddleware middleware", () => {
   describe("When it is called", () => {
-    test("Then it should the next function with a status code 404 and the message 'Error not found' ", () => {
+    test("Then it should call the next function with a status code 404 and the message 'Error not found' ", () => {
       const customError = new CustomError(404, "Endpoint not found");
 
       type CustomResponse = Pick<Response, "status" | "json">;

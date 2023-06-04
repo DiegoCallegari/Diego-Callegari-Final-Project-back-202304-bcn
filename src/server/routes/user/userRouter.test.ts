@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import { type UserAccess, type UserDbStructure } from "../../types";
 import jwt from "jsonwebtoken";
 import { app } from "../../app.js";
-import User from "../../../database/models/user.js";
+import User from "../../../database/models/User.js";
 import connectToDatabase from "../../../database/connectToDataBase.js";
 import paths from "../../utils/paths.js";
 
