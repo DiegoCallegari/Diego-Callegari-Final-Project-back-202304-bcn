@@ -8,7 +8,6 @@ import paths from "./utils/paths.js";
 import userRouter from "./routes/user/userRouter.js";
 import ping from "./controllers/ping/pingController.js";
 import eventsRouter from "./routes/events/eventsRouter.js";
-import { auth } from "./middlewares/authMiddleware/authMiddleware.js";
 
 const allowedOrigins = [
   process.env.ALLOWED_ORIGINS_DEV!,
@@ -33,7 +32,7 @@ app.get(paths.ping, ping);
 
 app.use(paths.user, userRouter);
 
-app.use(paths.events, auth, eventsRouter);
+app.use(paths.events, eventsRouter);
 
 app.use(notFoundError);
 

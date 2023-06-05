@@ -43,12 +43,4 @@ describe("Given a GET '/events' endpoint", () => {
       expect(response.body.events).toHaveLength(2);
     });
   });
-
-  describe("When it receives a request with an invalid token", () => {
-    test("Then it should return a status code 401 ", async () => {
-      const expectedStatusCode = 401;
-
-      await request(app).get(paths.events).expect(expectedStatusCode);
-    });
-  });
 });
