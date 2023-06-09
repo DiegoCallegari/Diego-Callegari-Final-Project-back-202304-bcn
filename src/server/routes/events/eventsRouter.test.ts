@@ -10,7 +10,7 @@ import { app } from "../../app.js";
 
 let server: MongoMemoryServer;
 const tokenMock =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwODRiMjJhYTE1NTc4MjFhYmIwY2UiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODU4OTU3ODgsImV4cCI6MTY4NTk4MjE4OH0.aGdLF2H_jl5vS7IG0jqga64R4SA59vJKhKqorFMhf68";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwODRiMjJhYTE1NTc4MjFhYmIwY2UiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODYzMDQ4NTUsImV4cCI6MTY4NjM5MTI1NX0.4unfgpRxGt98KkW9IXt-m4rZZSObYDTL_FnnPvSQgfo";
 
 beforeAll(async () => {
   server = await MongoMemoryServer.create();
@@ -41,6 +41,28 @@ describe("Given a GET '/events' endpoint", () => {
         .expect(expectedStatusCode);
 
       expect(response.body.events).toHaveLength(2);
+    });
+  });
+});
+
+describe("Given a DELETE '/:id' endpoint", () => {
+  beforeEach(async () => {
+    await Event.create(eventsMock);
+  });
+
+  describe("When it receives a request with a valid id", () => {
+    test("Then it should return a status with status code '200' and the response's method json with 'Event removed' message", async () => {
+      const expectedStatusCode = 200;
+      const expectedMessage = "Event removed";
+
+      const event = await Event.find().exec();
+
+      const response = await request(app)
+        .delete(`/events/${event[0]._id.toString()}`)
+        .set("Authorization", `Bearer ${tokenMock}`)
+        .expect(expectedStatusCode);
+
+      expect(response.body.message).toBe(expectedMessage);
     });
   });
 });
