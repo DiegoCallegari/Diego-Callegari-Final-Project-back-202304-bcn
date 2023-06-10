@@ -1,13 +1,13 @@
 import { Router } from "express";
-import getEvents, {
+import {
   deleteEvent,
+  getEvents,
 } from "../../controllers/event/eventsController.js";
-import { auth } from "../../middlewares/authMiddleware/authMiddleware.js";
 
 const eventsRouter = Router();
 
 eventsRouter.get("/", getEvents);
 
-eventsRouter.delete("/:eventId", auth, deleteEvent);
+eventsRouter.delete("/:eventId", deleteEvent);
 
 export default eventsRouter;

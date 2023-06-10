@@ -44,7 +44,7 @@ describe("Given an deleteEvents controller", () => {
   describe("When it receives a request with an invalid event id", () => {
     test("Then it should call the next function with the message 'Event not found'", async () => {
       const req: Partial<CustomRequest> = {
-        params: { id: "8" },
+        params: { eventId: "8" },
       };
 
       const error = new CustomError(404, "Event not found");

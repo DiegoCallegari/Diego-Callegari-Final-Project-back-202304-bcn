@@ -1,8 +1,8 @@
 import { type Request, type NextFunction, type Response } from "express";
-import getEvents from "../eventsController.js";
 import { eventsMock } from "../../../../mocks/eventsMocks.js";
 import { type CustomRequest } from "../../../types.js";
 import Event from "../../../../database/models/Event.js";
+import { getEvents } from "../eventsController.js";
 
 beforeEach(() => {
   jest.clearAllMocks();
