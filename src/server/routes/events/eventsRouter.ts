@@ -1,13 +1,20 @@
 import { Router } from "express";
-import getEvents, {
+import {
+  addEvent,
   deleteEvent,
+  getEvents,
 } from "../../controllers/event/eventsController.js";
-import { auth } from "../../middlewares/authMiddleware/authMiddleware.js";
+import { validate } from "express-validation";
+import { createEventSchema } from "../../utils/schemas/eventSchema.js";
 
 const eventsRouter = Router();
 
 eventsRouter.get("/", getEvents);
-
-eventsRouter.delete("/:eventId", auth, deleteEvent);
+eventsRouter.delete("/:eventId", deleteEvent);
+eventsRouter.post(
+  "/add",
+  validate(createEventSchema, {}, { abortEarly: false }),
+  addEvent
+);
 
 export default eventsRouter;

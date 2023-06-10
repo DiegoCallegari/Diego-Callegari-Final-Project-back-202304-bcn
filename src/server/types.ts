@@ -20,7 +20,7 @@ export interface UserDbStructure extends UserAccess {
   _id: Types.ObjectId;
 }
 
-export interface EventStructure {
+export interface EventDbStructure {
   _id: Types.ObjectId;
   title: string;
   image: string;
@@ -33,8 +33,19 @@ export interface EventStructure {
 
 export interface CustomRequest extends Request {
   userId: string;
+  params: { eventId: string };
+  body: EventStructure;
 }
 
 export interface TokenStructure {
   token: string;
+}
+
+export interface EventStructure {
+  title: string;
+  image: string;
+  neighbourhood: string;
+  description: string;
+  date: Date;
+  category: string;
 }

@@ -1,7 +1,7 @@
 import { Types } from "mongoose";
-import { type EventStructure } from "../server/types";
+import { type EventStructure, type EventDbStructure } from "../server/types";
 
-export const eventMock: EventStructure = {
+export const eventMock: EventDbStructure = {
   _id: new Types.ObjectId(),
   title: "Beach Concert",
   image: "",
@@ -12,7 +12,7 @@ export const eventMock: EventStructure = {
   user: new Types.ObjectId("647084b22aa1557821abb0ce"),
 };
 
-export const eventsMock: EventStructure[] = [
+export const eventsMock: EventDbStructure[] = [
   {
     _id: new Types.ObjectId(),
     title: "Beach Concert",
@@ -34,3 +34,12 @@ export const eventsMock: EventStructure[] = [
     user: new Types.ObjectId("647084b22aa1557821abb0ce"),
   },
 ];
+
+export const newEventMock: EventStructure = {
+  title: "Beach Concert",
+  image: "",
+  neighbourhood: "Marbella Beach",
+  description: "",
+  date: new Date(2023, 6, 15),
+  category: "music",
+};
