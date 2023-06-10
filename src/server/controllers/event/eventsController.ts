@@ -4,12 +4,17 @@ import createDebug from "debug";
 import Event from "../../../database/models/Event.js";
 import { type CustomRequest } from "../../types.js";
 import { CustomError } from "../../../CustomError/CustomError.js";
+import { Types } from "mongoose";
 
 const debug = createDebug(
   "quefem-api:server:controllers:event:eventsController.js"
 );
 
-const getEvents = async (req: Request, res: Response, next: NextFunction) => {
+export const getEvents = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const events = await Event.find().limit(10).exec();
     res.status(200).json({ events });
@@ -42,4 +47,26 @@ export const deleteEvent = async (
   }
 };
 
-export default getEvents;
+export const addEvent = async (
+  req: CustomRequest,
+  res: Response,
+  next: NextFunction
+) => {
+  const { userId, body } = req;
+
+  try {
+    const newEvent = await Event.create({
+      ...body,
+      user: new Types.ObjectId(userId),
+    });
+
+    if (!newEvent) {
+      const error = new CustomError(404, "error creating event");
+      throw error;
+    }
+
+    res.status(201).json({ event: newEvent });
+  } catch (error: unknown) {
+    next(error);
+  }
+};
