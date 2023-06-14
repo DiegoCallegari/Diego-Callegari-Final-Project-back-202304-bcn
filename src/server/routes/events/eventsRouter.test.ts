@@ -11,7 +11,7 @@ import { app } from "../../app.js";
 let server: MongoMemoryServer;
 
 const tokenMock =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwODRiMjJhYTE1NTc4MjFhYmIwY2UiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODYzOTE5ODQsImV4cCI6MTY4NjQ3ODM4NH0.DeEC357UHw1VF8srOwrBKT-EwBs6QQBSCvYhNoJgx-Y";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDcwODRiMjJhYTE1NTc4MjFhYmIwY2UiLCJuYW1lIjoiYWRtaW4iLCJpYXQiOjE2ODY3NTE1MzQsImV4cCI6MTY4NjgzNzkzNH0.zhfOq4YseRrrh_i0u_Fv22yHtvScp_8rXWhlv3qlIyo";
 
 beforeAll(async () => {
   server = await MongoMemoryServer.create();
