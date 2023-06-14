@@ -19,6 +19,7 @@ describe("Given an events controller", () => {
   describe("When it receives a response", () => {
     Event.find = jest.fn().mockReturnValue({
       limit: jest.fn().mockReturnThis(),
+      sort: jest.fn().mockReturnThis(),
       exec: jest.fn().mockResolvedValue(eventsMock),
     });
 

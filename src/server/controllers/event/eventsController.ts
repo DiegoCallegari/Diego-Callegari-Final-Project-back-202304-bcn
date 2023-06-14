@@ -16,7 +16,7 @@ export const getEvents = async (
   next: NextFunction
 ) => {
   try {
-    const events = await Event.find().limit(10).exec();
+    const events = await Event.find().sort({ _id: -1 }).limit(10).exec();
     res.status(200).json({ events });
   } catch (error) {
     error.message = "Database error connection";
